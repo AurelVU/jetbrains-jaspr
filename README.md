@@ -1,9 +1,14 @@
 # Jaspr Plugin for IntelliJ IDEA
 
 [![Build](https://github.com/AurelVU/jetbrains-jaspr/actions/workflows/build.yml/badge.svg)](https://github.com/AurelVU/jetbrains-jaspr/actions/workflows/build.yml)
-[![Version](https://img.shields.io/jetbrains/plugin/v/com.github.nicetyone.jetbrainsjaspr.svg)](https://plugins.jetbrains.com/plugin/com.github.nicetyone.jetbrainsjaspr)
+[![Version](https://img.shields.io/jetbrains/plugin/v/30867.svg)](https://plugins.jetbrains.com/plugin/30867-jaspr)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/30867.svg)](https://plugins.jetbrains.com/plugin/30867-jaspr)
 
 IDE support for the [Jaspr](https://docs.page/schultek/jaspr) Dart web framework in IntelliJ IDEA, Android Studio, and other JetBrains IDEs.
+
+<a href="https://plugins.jetbrains.com/plugin/30867-jaspr">
+<img src="https://plugins.jetbrains.com/embeddable/install/30867" alt="Get from Marketplace" width="245"/>
+</a>
 
 ## Features
 
