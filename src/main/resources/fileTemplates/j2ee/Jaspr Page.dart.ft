@@ -1,0 +1,18 @@
+import 'package:jaspr/jaspr.dart';
+
+class ${NAME}Page extends StatelessComponent {
+  const ${NAME}Page({super.key});
+
+  static final route = Route(
+    path: '/${NAME.toLowerCase()}',
+    title: '${NAME}',
+    builder: (context, state) => const ${NAME}Page(),
+  );
+
+  @override
+  Iterable<Component> build(BuildContext context) sync* {
+    yield section([
+      h1([text('${NAME}')]),
+    ]);
+  }
+}

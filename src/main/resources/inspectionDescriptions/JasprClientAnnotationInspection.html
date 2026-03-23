@@ -1,0 +1,11 @@
+<html>
+<body>
+Reports issues with the <code>@client</code> annotation usage in Jaspr components.
+<ul>
+    <li>Warns when multiple <code>@client</code> components are declared in the same file.</li>
+    <li>Warns when a <code>@client</code> component has non-serializable parameters.</li>
+</ul>
+<p>Only one <code>@client</code> component should be declared per file, and its parameters must be serializable
+so they can be transferred between server and client.</p>
+</body>
+</html>

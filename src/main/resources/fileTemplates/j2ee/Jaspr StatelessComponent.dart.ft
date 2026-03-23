@@ -1,0 +1,12 @@
+import 'package:jaspr/jaspr.dart';
+
+class ${NAME} extends StatelessComponent {
+  const ${NAME}({super.key});
+
+  @override
+  Iterable<Component> build(BuildContext context) sync* {
+    yield div([
+      text('${NAME}'),
+    ]);
+  }
+}

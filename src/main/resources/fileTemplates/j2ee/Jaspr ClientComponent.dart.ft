@@ -1,0 +1,18 @@
+import 'package:jaspr/jaspr.dart';
+
+@client
+class ${NAME} extends StatefulComponent {
+  const ${NAME}({super.key});
+
+  @override
+  State<${NAME}> createState() => _${NAME}State();
+}
+
+class _${NAME}State extends State<${NAME}> {
+  @override
+  Iterable<Component> build(BuildContext context) sync* {
+    yield div([
+      text('${NAME}'),
+    ]);
+  }
+}
