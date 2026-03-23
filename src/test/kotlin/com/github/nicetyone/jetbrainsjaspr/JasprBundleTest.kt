@@ -11,8 +11,7 @@ class JasprBundleTest : BasePlatformTestCase() {
             "jaspr.intention.wrap.with.component",
             "jaspr.intention.wrap.with.component.family",
             "jaspr.inspection.client.annotation.multiple",
-            "jaspr.scope.name",
-            "jaspr.scope.description"
+            "jaspr.scope.name"
         )
         for (key in keys) {
             val value = JasprBundle.message(key)
@@ -22,10 +21,21 @@ class JasprBundleTest : BasePlatformTestCase() {
 
     fun testScopeKeysExist() {
         val scopeKeys = listOf(
-            "jaspr.scope.server",
-            "jaspr.scope.client",
-            "jaspr.scope.island",
-            "jaspr.scope.shared"
+            "jaspr.scope.server.label",
+            "jaspr.scope.server.tooltip",
+            "jaspr.scope.server.description",
+            "jaspr.scope.client.label",
+            "jaspr.scope.client.tooltip",
+            "jaspr.scope.client.description",
+            "jaspr.scope.island.label",
+            "jaspr.scope.island.tooltip",
+            "jaspr.scope.island.description",
+            "jaspr.scope.shared.label",
+            "jaspr.scope.shared.tooltip",
+            "jaspr.scope.shared.description",
+            "jaspr.scope.client.only.label",
+            "jaspr.scope.client.only.tooltip",
+            "jaspr.scope.client.only.description"
         )
         for (key in scopeKeys) {
             val value = JasprBundle.message(key)
