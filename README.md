@@ -11,34 +11,25 @@ IDE support for the [Jaspr](https://docs.page/schultek/jaspr) Dart web framework
 
 Create a new Jaspr project directly from **File > New Project > Jaspr**. Configure rendering mode (static / server / client), routing, Flutter embedding, and backend setup — the wizard runs `jaspr create` with the selected options and sets up run configurations automatically.
 
-<!-- ![New Project Wizard](screenshots/new_project_wizard.png) -->
+![New Project Wizard](screenshots/screenshot1.png)
+
+### Project Structure & Run Configurations
+
+Built-in run configuration type for `jaspr serve` and `jaspr build`. Supports custom port, `--no-ssr` flag, target file, and additional CLI arguments. Auto-created when using the New Project wizard. Dart SDK is configured automatically.
+
+![Project with Run Configurations](screenshots/screenshot2.png)
 
 ### Component Scope Indicators
 
 Code Vision labels above each Jaspr component class show its rendering scope — **Server**, **Client (hydrated)**, **Island**, or **Shared**. Click the label for a detailed explanation.
 
-<!-- ![Code Vision](screenshots/code_vision.png) -->
-
-### Run Configurations
-
-Built-in run configuration type for `jaspr serve` and `jaspr build`. Supports custom port, `--no-ssr` flag, target file, and additional CLI arguments. Auto-created when using the New Project wizard.
-
-<!-- ![Run Configurations](screenshots/run_configurations.png) -->
-
 ### Code Completion
 
 Context-aware completion for Jaspr HTML helpers (`div`, `span`, `a`, `img`, etc.), component annotations (`@client`, `@island`), and common patterns.
 
-<!-- ![Code Completion](screenshots/code_completion.png) -->
-
-### Component Highlighting
-
-Custom color scheme for Jaspr component annotations. `@client` and `@island` components are visually distinguished in the editor.
-
-<!-- ![Component Highlighting](screenshots/component_highlighting.png) -->
-
 ### Additional Features
 
+- **Component highlighting** — custom color scheme for `@client` and `@island` annotations
 - **File templates** — quickly create Jaspr components and pages via **New > Jaspr**
 - **Inspections** — validates `@client` annotation usage (only one per file)
 - **Intentions** — wrap selection with a Jaspr component
