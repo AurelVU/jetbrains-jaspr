@@ -28,6 +28,13 @@ class JasprSettings : PersistentStateComponent<JasprSettings.State> {
             myState.jasprCliPath = value
         }
 
+    /**
+     * Returns the configured CLI path, or falls back to bare "jaspr" (relying on PATH).
+     */
+    fun resolveCliPath(): String {
+        return jasprCliPath.ifEmpty { "jaspr" }
+    }
+
     companion object {
         fun getInstance(project: Project): JasprSettings =
             project.getService(JasprSettings::class.java)

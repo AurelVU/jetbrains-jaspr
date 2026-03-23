@@ -32,9 +32,11 @@ class JasprSettingsConfigurable(private val project: Project) : SearchableConfig
         return panel {
             group("Jaspr SDK") {
                 row(JasprBundle.message("jaspr.settings.cli.path")) {
-                    cell(pathField!!)
-                        .resizableColumn()
-                        .comment("Leave empty to use <code>dart run jaspr_cli:jaspr</code> from the project directory")
+                    pathField?.let { field ->
+                        cell(field)
+                            .resizableColumn()
+                            .comment("Leave empty to use <code>dart run jaspr_cli:jaspr</code> from the project directory")
+                    }
                 }
             }
         }

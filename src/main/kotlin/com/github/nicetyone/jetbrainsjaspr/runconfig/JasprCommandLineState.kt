@@ -3,6 +3,7 @@ package com.github.nicetyone.jetbrainsjaspr.runconfig
 import com.github.nicetyone.jetbrainsjaspr.services.JasprSettings
 import com.intellij.execution.configurations.CommandLineState
 import com.intellij.execution.configurations.GeneralCommandLine
+import com.intellij.util.execution.ParametersListUtil
 import com.intellij.execution.process.ColoredProcessHandler
 import com.intellij.execution.process.ProcessHandler
 import com.intellij.execution.process.ProcessTerminatedListener
@@ -46,16 +47,12 @@ class JasprCommandLineState(
 
         val additional = config.additionalArgs.trim()
         if (additional.isNotEmpty()) {
-            args.addAll(additional.split("\\s+".toRegex()))
+            args.addAll(ParametersListUtil.parse(additional))
         }
 
-        val jasprCliPath = JasprSettings.getInstance(config.project).jasprCliPath
+        val jasprCliPath = JasprSettings.getInstance(config.project).resolveCliPath()
 
-        val commandLine = if (jasprCliPath.isNotEmpty()) {
-            GeneralCommandLine(jasprCliPath).withParameters(args)
-        } else {
-            GeneralCommandLine("dart", "run", "jaspr_cli:jaspr").withParameters(args)
-        }
+        val commandLine = GeneralCommandLine(jasprCliPath).withParameters(args)
 
         return commandLine
             .withWorkDirectory(workDir)

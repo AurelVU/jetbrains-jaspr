@@ -1,5 +1,7 @@
 package com.github.nicetyone.jetbrainsjaspr.annotator
 
+import com.github.nicetyone.jetbrainsjaspr.JasprConstants
+import com.github.nicetyone.jetbrainsjaspr.JasprScopeDetector
 import com.github.nicetyone.jetbrainsjaspr.services.JasprProjectService
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
@@ -25,12 +27,6 @@ class JasprComponentContextAnnotator : Annotator {
             com.intellij.openapi.editor.DefaultLanguageHighlighterColors.CLASS_NAME
         )
     }
-
-    private val componentBaseClasses = setOf(
-        "StatelessComponent",
-        "StatefulComponent",
-        "InheritedComponent"
-    )
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (element !is DartComponentName) return
@@ -59,7 +55,7 @@ class JasprComponentContextAnnotator : Annotator {
     private fun isJasprComponent(dartClass: DartClass): Boolean {
         val superClass = dartClass.superClass ?: return false
         val superClassName = superClass.referenceExpression?.text ?: return false
-        return superClassName in componentBaseClasses
+        return superClassName in JasprConstants.COMPONENT_BASE_CLASSES
     }
 
     private fun detectComponentContext(dartClass: DartClass): ComponentContext {
@@ -68,12 +64,10 @@ class JasprComponentContextAnnotator : Annotator {
         if ("client" in annotations) return ComponentContext.CLIENT
         if ("island" in annotations) return ComponentContext.ISLAND
 
-        val fileText = dartClass.containingFile?.text ?: return ComponentContext.SHARED
-
-        return when {
-            fileText.contains("package:jaspr/server.dart") -> ComponentContext.SERVER
-            fileText.contains("package:jaspr/browser.dart") -> ComponentContext.CLIENT
-            else -> ComponentContext.SHARED
+        return when (JasprScopeDetector.detectFileScope(dartClass.containingFile)) {
+            JasprScopeDetector.FileScope.SERVER -> ComponentContext.SERVER
+            JasprScopeDetector.FileScope.CLIENT -> ComponentContext.CLIENT
+            JasprScopeDetector.FileScope.SHARED -> ComponentContext.SHARED
         }
     }
 

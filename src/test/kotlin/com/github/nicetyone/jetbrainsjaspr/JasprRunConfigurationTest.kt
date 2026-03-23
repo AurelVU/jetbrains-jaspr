@@ -119,6 +119,46 @@ class JasprRunConfigurationTest : JasprTestBase() {
         config.checkConfiguration() // Should not throw
     }
 
+    fun testCheckConfigurationThrowsOnNonNumericPort() {
+        config.port = "abc"
+        try {
+            config.checkConfiguration()
+            fail("Expected RuntimeConfigurationError")
+        } catch (e: RuntimeConfigurationError) {
+            assertTrue(e.message!!.contains("valid number"))
+        }
+    }
+
+    fun testCheckConfigurationThrowsOnZeroPort() {
+        config.port = "0"
+        try {
+            config.checkConfiguration()
+            fail("Expected RuntimeConfigurationError")
+        } catch (e: RuntimeConfigurationError) {
+            assertTrue(e.message!!.contains("between 1 and 65535"))
+        }
+    }
+
+    fun testCheckConfigurationThrowsOnPortTooLarge() {
+        config.port = "99999"
+        try {
+            config.checkConfiguration()
+            fail("Expected RuntimeConfigurationError")
+        } catch (e: RuntimeConfigurationError) {
+            assertTrue(e.message!!.contains("between 1 and 65535"))
+        }
+    }
+
+    fun testCheckConfigurationThrowsOnNegativePort() {
+        config.port = "-1"
+        try {
+            config.checkConfiguration()
+            fail("Expected RuntimeConfigurationError")
+        } catch (e: RuntimeConfigurationError) {
+            assertTrue(e.message!!.contains("between 1 and 65535"))
+        }
+    }
+
     private fun createFreshConfig(): JasprRunConfiguration {
         val type = JasprConfigurationType()
         val factory = JasprRunConfigurationFactory(type)

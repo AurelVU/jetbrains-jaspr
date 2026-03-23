@@ -32,6 +32,15 @@ class JasprRunConfiguration(
         if (command.isBlank()) {
             throw RuntimeConfigurationError("Jaspr command must not be empty")
         }
+
+        val portStr = port.trim()
+        if (portStr.isNotEmpty()) {
+            val portNum = portStr.toIntOrNull()
+                ?: throw RuntimeConfigurationError("Port must be a valid number")
+            if (portNum !in 1..65535) {
+                throw RuntimeConfigurationError("Port must be between 1 and 65535")
+            }
+        }
     }
 
     override fun readExternal(element: org.jdom.Element) {

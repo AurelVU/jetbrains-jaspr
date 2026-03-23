@@ -1,13 +1,14 @@
 <idea-plugin>
     <id>com.github.nicetyone.jetbrainsjaspr</id>
     <name>Jaspr</name>
-    <vendor email="support@example.com" url="https://github.com/nicetyone/jetbrains-jaspr">nicetyone</vendor>
+    <vendor email="nicetyone@github.com" url="https://github.com/nicetyone/jetbrains-jaspr">nicetyone</vendor>
 
     <description><![CDATA[
     Provides IDE support for the <a href="https://docs.page/schultek/jaspr">Jaspr</a> Dart web framework.
 
     <h3>Features</h3>
     <ul>
+        <li><b>New Project wizard</b> — create a Jaspr project from <i>File &gt; New Project</i></li>
         <li>Run configurations for <code>jaspr serve</code> and <code>jaspr build</code></li>
         <li>File templates for Jaspr components and pages</li>
         <li>Code completion for Jaspr HTML helpers, annotations, and components</li>
@@ -62,6 +63,12 @@
                          enabledByDefault="true"
                          level="WARNING"
                          implementationClass="com.github.nicetyone.jetbrainsjaspr.inspections.JasprClientAnnotationInspection"/>
+
+        <!-- Notifications -->
+        <notificationGroup id="Jaspr" displayType="BALLOON"/>
+
+        <!-- New Project Wizard -->
+        <newProjectWizard.generator implementation="com.github.nicetyone.jetbrainsjaspr.wizard.JasprNewProjectWizard"/>
 
         <!-- Intentions -->
         <intentionAction>

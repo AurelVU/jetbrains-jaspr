@@ -1,5 +1,6 @@
 package com.github.nicetyone.jetbrainsjaspr.completion
 
+import com.github.nicetyone.jetbrainsjaspr.JasprConstants
 import com.github.nicetyone.jetbrainsjaspr.JasprIcons
 import com.github.nicetyone.jetbrainsjaspr.services.JasprProjectService
 import com.intellij.codeInsight.completion.*
@@ -53,7 +54,7 @@ class JasprCompletionContributor : CompletionContributor() {
             "@decoder" to "Custom decoder for deserialization",
         )
 
-        private val baseClasses = listOf(
+        private val baseClassDescriptions = mapOf(
             "StatelessComponent" to "Base class for stateless Jaspr components",
             "StatefulComponent" to "Base class for stateful Jaspr components",
             "InheritedComponent" to "Base class for inherited Jaspr components",
@@ -106,7 +107,8 @@ class JasprCompletionContributor : CompletionContributor() {
                 )
             }
 
-            for ((name, description) in baseClasses) {
+            for (name in JasprConstants.COMPONENT_BASE_CLASSES) {
+                val description = baseClassDescriptions[name] ?: ""
                 result.addElement(
                     PrioritizedLookupElement.withPriority(
                         LookupElementBuilder.create(name)

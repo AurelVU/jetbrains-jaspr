@@ -111,15 +111,26 @@ class JasprCommandLineStateTest : JasprTestBase() {
         assertTrue("--release" in params)
     }
 
+    fun testAdditionalArgsWithQuotes() {
+        val state = createState {
+            command = "serve"
+            additionalArgs = "--output \"my build dir\" --verbose"
+        }
+        val cmd = state.buildCommandLine()
+        val params = cmd.parametersList.list
+
+        assertTrue("--output" in params)
+        assertTrue("my build dir" in params)
+        assertTrue("--verbose" in params)
+    }
+
     fun testDefaultExecutable() {
         JasprSettings.getInstance(project).jasprCliPath = ""
         val state = createState { command = "serve" }
         val cmd = state.buildCommandLine()
 
-        assertEquals("dart", cmd.exePath)
-        val params = cmd.parametersList.list
-        assertTrue(params.contains("run"))
-        assertTrue(params.contains("jaspr_cli:jaspr"))
+        assertEquals("jaspr", cmd.exePath)
+        assertTrue(cmd.parametersList.list.contains("serve"))
     }
 
     fun testCustomCliPath() {
